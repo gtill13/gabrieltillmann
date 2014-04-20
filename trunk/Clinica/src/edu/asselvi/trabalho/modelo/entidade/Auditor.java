@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * @author Gabriel Tillmann
- *
+ * jdbc:mysql://localhost:3306
  */
 public class Auditor {
 
