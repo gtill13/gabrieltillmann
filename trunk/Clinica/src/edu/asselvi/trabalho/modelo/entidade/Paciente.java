@@ -9,6 +9,10 @@ package edu.asselvi.trabalho.modelo.entidade;
  */
 public class Paciente {
 	
+	public Paciente() {
+		
+	}
+		
 	public Paciente(String nome, String rg, String cpf, ESexo sexo) {
 		this.nome = nome;
 		this.rg = rg;
