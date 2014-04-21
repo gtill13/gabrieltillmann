@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.asselvi.trabalho.framework.dao;
+package edu.asselvi.trabalho.framework.service;
 
 /**
  * @author TiLL
@@ -16,7 +16,7 @@ import edu.asselvi.trabalho.modelo.entidade.ESexo;
 import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
-public final class teste {
+/*public final class teste {
 
 	public static void main(String[] args) {
 
@@ -32,6 +32,11 @@ public final class teste {
 		case 3:
 			teste3();
 			break;
+			
+		case 4:
+			teste4();
+			break;
+			
 		default:
 			System.out.println("ERRO");
 
@@ -74,4 +79,10 @@ public final class teste {
 		dao.atualizar(paciente);
 		// dao.deletar(paciente);
 	}
-}
+	
+	public static void teste4() {
+		
+		HelperPane.showImputMult();
+		
+	}
+}*/
