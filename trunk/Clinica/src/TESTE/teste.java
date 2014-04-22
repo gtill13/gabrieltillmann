@@ -10,13 +10,14 @@ package TESTE;
 
 import javax.swing.JOptionPane;
 
+import edu.asselvi.trabalho.design.MenuPrincipal;
 import edu.asselvi.trabalho.modelo.dao.PacienteDao;
 import edu.asselvi.trabalho.modelo.entidade.Contato;
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
 import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
-/*public final class teste {
+public final class teste {
 
 	public static void main(String[] args) {
 
@@ -82,7 +83,9 @@ import edu.asselvi.trabalho.modelo.entidade.Paciente;
 	
 	public static void teste4() {
 		
-		HelperPane.showImputMult();
+		MenuPrincipal menu = new MenuPrincipal();
+		
+		menu.showDialog(true);
 		
 	}
-}*/
+}

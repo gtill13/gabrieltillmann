@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.trabalho.framework.dao.DaoException;
-import edu.asselvi.trabalho.framework.dao.Mapeador;
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 

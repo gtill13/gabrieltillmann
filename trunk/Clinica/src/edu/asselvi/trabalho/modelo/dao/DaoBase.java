@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
-import edu.asselvi.trabalho.framework.dao.DaoException;
-import edu.asselvi.trabalho.framework.dao.Mapeador;
-
 public class DaoBase {
 
 	private static final ThreadLocal<Connection> context = new ThreadLocal<Connection>();
