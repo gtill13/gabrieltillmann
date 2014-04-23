@@ -33,7 +33,7 @@ public class ContatoDao extends DaoBase {
 
 	}
 
-	public void atualizar(Contato contato) throws DaoException {
+	/*public void atualizar(Contato contato) throws DaoException {
 
 		if (contato == null)
 			return;
@@ -112,5 +112,5 @@ public class ContatoDao extends DaoBase {
 
 		return endereco;
 	}
-
+*/
 }
