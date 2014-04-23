@@ -24,13 +24,13 @@ public class PacienteDao extends DaoBase {
 		ContatoDao contatoDao = new ContatoDao();
 		conecta();
 
+		enderecoDao.inserir(paciente.getEndereco());
+		contatoDao.inserir(paciente.getContato());
+		
 		executeUpdate("insert into paciente (nome, rg, cpf, sexo) values ( '"
 				+ paciente.getNome() + "', '" + paciente.getRg() + "', '"
 				+ paciente.getCpf() + "', '" + paciente.getSexo() + "' ) ");
-
-		enderecoDao.inserir(paciente.getEndereco());
-		contatoDao.inserir(paciente.getContato());
-
+		
 		commit();
 
 		disconecta();
@@ -88,6 +88,8 @@ public class PacienteDao extends DaoBase {
 						paciente.setRg(rset.getString("rg"));
 						paciente.setSexo(ESexo.valueOf(rset.getString("sexo")));
 
+						
+						
 						listPacientes.add(paciente);
 					}
 				} catch (SQLException e) {

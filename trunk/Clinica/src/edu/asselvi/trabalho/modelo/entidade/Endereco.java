@@ -10,6 +10,9 @@ public class Endereco {
 		this.cep = cep;
 	}
 	
+	public Endereco() {
+	}
+
 	private long id;
 	private String endereco;
 	private String cidade;
