@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
+import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
 /**
@@ -23,33 +24,52 @@ public class PacienteDao extends DaoBase {
 		EnderecoDao enderecoDao = new EnderecoDao();
 		ContatoDao contatoDao = new ContatoDao();
 		conecta();
-
-		enderecoDao.inserir(paciente.getEndereco());
-		contatoDao.inserir(paciente.getContato());
 		
-		executeUpdate("insert into paciente (nome, rg, cpf, sexo) values ( '"
-				+ paciente.getNome() + "', '" + paciente.getRg() + "', '"
-				+ paciente.getCpf() + "', '" + paciente.getSexo() + "' ) ");
+		executeUpdate("insert into paciente (nome, rg, cpf, sexo, id_responsavel, id_contato, id_endereco) values ( '"
+				+ paciente.getNome()                            + "', '" + paciente.getRg()              + "', '"
+				+ paciente.getCpf()                             + "', '" + paciente.getSexo()            + "', '"
+				+ inserirResponsavel(paciente.getResponsavel()) + "', '"
+				+ contatoDao.inserir(paciente.getContato())     + "', '"
+				+ enderecoDao.inserir(paciente.getEndereco())   + "' ) ");
 		
 		commit();
 
 		disconecta();
 	}
 
+	private long inserirResponsavel(Paciente paciente) {
+
+		if (paciente == null)
+			return 0;
+		
+		EnderecoDao enderecoDao = new EnderecoDao();
+		ContatoDao contatoDao = new ContatoDao();
+		
+		conectaPeloContext();
+		
+		executeUpdate("insert into paciente (nome, rg, cpf, sexo, id_contato, id_endereco) values ( '"
+				+ paciente.getNome() + "', '" + paciente.getRg()   + "', '"
+				+ paciente.getCpf()  + "', '" + paciente.getSexo() + "', '"
+				+ contatoDao.inserir(paciente.getContato())        + "', '"
+				+ enderecoDao.inserir(paciente.getEndereco())      + "' ) ");
+		
+		return getGenerationKeys();
+	}
+	
 	public void atualizar(Paciente paciente) throws DaoException {
 
-		//EnderecoDao enderecoDao = new EnderecoDao();
-		//ContatoDao contatoDao = new ContatoDao();
+		EnderecoDao enderecoDao = new EnderecoDao();
+		ContatoDao contatoDao = new ContatoDao();
 		conecta();
 
+		enderecoDao.atualizar(paciente.getEndereco());
+		contatoDao .atualizar(paciente.getContato ());
+		
 		executeUpdate("update paciente set nome = '" + paciente.getNome()
 				+ "', rg = '" + paciente.getRg() + "', cpf = '"
 				+ paciente.getCpf() + "', sexo =  '" + paciente.getSexo()
 				+ "' where id = '" + paciente.getId() + "' ");
-
-		//enderecoDao.atualizar(paciente.getEndereco());
-		//contatoDao.atualizar(paciente.getContato());
-
+		
 		commit();
 
 		disconecta();

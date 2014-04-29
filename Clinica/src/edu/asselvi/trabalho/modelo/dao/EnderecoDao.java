@@ -16,31 +16,32 @@ import edu.asselvi.trabalho.modelo.entidade.Endereco;
  */
 public class EnderecoDao extends DaoBase {
 
-	public void inserir(Endereco endereco) {
+	public long inserir(Endereco endereco) {
 
 		if (endereco == null)
-			return;
+			return 0;
 		
 		conectaPeloContext();
 		executeUpdate("insert into endereco (endereco, cidade, bairro, cep) values ( '" + endereco.getEndereco() + "', '" + endereco.getCidade() + "', '" + endereco.getBairro() + "', '" + endereco.getCep() + "' ) ");
 
-		endereco.setId(getGenerationKeys());
-		
+		return getGenerationKeys();
 	}
 	
-	public void atualizar(Endereco endereco) throws DaoException {
+	public long atualizar(Endereco endereco) throws DaoException {
 
 		if (endereco == null)
-			return;
-		
+			return 0;
+		else if (endereco.getId() == 0)
+			return this.inserir(endereco);
+			
 		conecta();
 
 		executeUpdate("update endereco set endereco = '" + endereco.getEndereco()
 				+ "', cidade = '" + endereco.getCidade() + "', bairro = '"
 				+ endereco.getBairro() + "', cep =  '" + endereco.getCep()
 				+ "' where id = '" + endereco.getId() + "' ");
-
-		endereco.setId(getGenerationKeys());
+		
+		return endereco.getId();
 	}
 	
 	public void deletar(Endereco endereco) throws DaoException {

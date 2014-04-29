@@ -9,6 +9,10 @@ public class Contato {
 		this.celular = celular;
 	}
 
+	public Contato() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private long id;
 	private String email;
 	private String telefone;

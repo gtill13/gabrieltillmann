@@ -16,10 +16,10 @@ import edu.asselvi.trabalho.modelo.entidade.Contato;
  */
 public class ContatoDao extends DaoBase {
 
-	public void inserir(Contato contato) {
+	public long inserir(Contato contato) {
 
 		if (contato == null)
-			return;
+			return 0;
 
 		conectaPeloContext();
 		executeUpdate("insert into contato (email, telefone, celular) values ( '"
@@ -29,51 +29,47 @@ public class ContatoDao extends DaoBase {
 				+ "', '"
 				+ contato.getCelular() + "' ) ");
 
-		contato.setId(getGenerationKeys());
+		return getGenerationKeys();
 
 	}
 
-	/*public void atualizar(Contato contato) throws DaoException {
+	public void atualizar(Contato contato) throws DaoException {
 
 		if (contato == null)
 			return;
 
 		conecta();
 
-		executeUpdate("update contato set email = '"
-				+ contato.getEmail() + "', cidade = '"
-				+ endereco.getCidade() + "', bairro = '" + endereco.getBairro()
-				+ "', cep =  '" + endereco.getCep() + "' where id = '"
-				+ endereco.getId() + "' ");
-
-		endereco.setId(getGenerationKeys());
-	}
-
-	public void deletar(Endereco endereco) throws DaoException {
-
-		conecta();
-
-		executeUpdate("delete from endereco where id = '" + endereco.getId()
+		executeUpdate("update contato set email = '" + contato.getEmail()
+				+ "', telefone = '" + contato.getTelefone() + "', celular = '"
+				+ contato.getCelular() + "' where id = '" + contato.getId()
 				+ "' ");
 	}
 
-	public List<Endereco> buscaTodos() {
+	public void deletar(Contato contato) throws DaoException {
 
-		final List<Endereco> listEnderecos = new ArrayList<Endereco>();
+		conecta();
 
-		executeQuery("select * from endereco", new Mapeador<Endereco>() {
+		executeUpdate("delete from contato where id = '" + contato.getId()
+				+ "' ");
+	}
+
+	public List<Contato> buscaTodos() {
+
+		final List<Contato> listContatos = new ArrayList<Contato>();
+
+		executeQuery("select * from contato", new Mapeador<Contato>() {
 			public void mapear(ResultSet rset) throws DaoException {
 				try {
 					while (rset.next()) {
-						Endereco endereco = new Endereco();
+						Contato contato = new Contato();
 
-						endereco.setId(rset.getLong("id"));
-						endereco.setEndereco(rset.getString("endereco"));
-						endereco.setCidade(rset.getString("cidade"));
-						endereco.setBairro(rset.getString("bairro"));
-						endereco.setCep(rset.getString("cep"));
+						contato.setId(rset.getLong("id"));
+						contato.setCelular(rset.getString("celular"));
+						contato.setEmail(rset.getString("email"));
+						contato.setTelefone(rset.getString("telefone"));
 
-						listEnderecos.add(endereco);
+						listContatos.add(contato);
 					}
 				} catch (SQLException e) {
 					throw new DaoException(
@@ -83,24 +79,23 @@ public class ContatoDao extends DaoBase {
 			}
 		});
 
-		return listEnderecos;
+		return listContatos;
 	}
 
-	public Endereco buscaEnderecoPeloId(long id) {
+	public Contato buscaEnderecoPeloId(long id) {
 
-		final Endereco endereco = new Endereco();
+		final Contato contato = new Contato();
 
-		executeQuery("select * from endereco where id = '" + id + "' ",
-				new Mapeador<Endereco>() {
+		executeQuery("select * from contato where id = '" + id + "' ",
+				new Mapeador<Contato>() {
 					public void mapear(ResultSet rset) throws DaoException {
 						try {
 							if (rset.next()) {
 
-								endereco.setId(rset.getLong("id"));
-								endereco.setEndereco(rset.getString("endereco"));
-								endereco.setCidade(rset.getString("cidade"));
-								endereco.setBairro(rset.getString("bairro"));
-								endereco.setCep(rset.getString("cep"));
+								contato.setId(rset.getLong("id"));
+								contato.setCelular(rset.getString("celular"));
+								contato.setEmail(rset.getString("email"));
+								contato.setTelefone(rset.getString("telefone"));
 							}
 						} catch (SQLException e) {
 							throw new DaoException(
@@ -110,7 +105,7 @@ public class ContatoDao extends DaoBase {
 					}
 				});
 
-		return endereco;
+		return contato;
 	}
-*/
+
 }
