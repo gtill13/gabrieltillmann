@@ -9,6 +9,17 @@ package edu.asselvi.trabalho.modelo.entidade;
  */
 public class Paciente {
 	
+	private long id;
+	private String nome;
+	private String rg;
+	private String cpf;
+	
+	private ESexo sexo;
+	
+	private Paciente responsavel;
+	private Endereco endereco;
+	private Contato contato;
+	
 	public Paciente() {
 		
 	}
@@ -26,21 +37,12 @@ public class Paciente {
 	}
 	
 	public Paciente(long id, String nome, String rg, String cpf, ESexo sexo,
-			Endereco endereco, Contato contato) {
+			Paciente responsavel, Endereco endereco, Contato contato) {
 		this(id, nome, rg, cpf, sexo);
+		this.responsavel = responsavel;
 		this.endereco = endereco;
 		this.contato = contato;
 	}
-		
-	private long id;
-	private String nome;
-	private String rg;
-	private String cpf;
-	
-	private ESexo sexo;
-	
-	private Endereco endereco;
-	private Contato contato;
 	
 	public long getId() {
 		return id;
@@ -77,6 +79,14 @@ public class Paciente {
 		this.sexo = sexo;
 	}
 
+	public Paciente getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Paciente responsavel) {
+		this.responsavel = responsavel;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -91,17 +101,28 @@ public class Paciente {
 		this.contato = contato;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((contato == null) ? 0 : contato.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result
+				+ ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result
+				+ ((responsavel == null) ? 0 : responsavel.hashCode());
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
 		return result;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -111,17 +132,30 @@ public class Paciente {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
+		if (contato == null) {
+			if (other.contato != null)
+				return false;
+		} else if (!contato.equals(other.contato))
+			return false;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
-		if (id != other.id)
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (responsavel == null) {
+			if (other.responsavel != null)
+				return false;
+		} else if (!responsavel.equals(other.responsavel))
 			return false;
 		if (rg == null) {
 			if (other.rg != null)
@@ -133,14 +167,18 @@ public class Paciente {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Paciente [id=").append(id).append(", nome=")
-				.append(nome).append(", rg=").append(rg).append(", cpf=")
-				.append(cpf).append(", sexo=").append(sexo)
+		builder.append("Paciente [nome=").append(nome).append(", rg=")
+				.append(rg).append(", cpf=").append(cpf).append(", sexo=")
+				.append(sexo).append(", responsavel=").append(responsavel)
 				.append(", endereco=").append(endereco).append(", contato=")
 				.append(contato).append("]");
 		return builder.toString();
 	}
+
 }

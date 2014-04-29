@@ -21,6 +21,6 @@ public class Consulta {
 	
 	private double valor;
 	
-	private Procedimento tratamento;
+	private Medicamento tratamento;
 	
 }
