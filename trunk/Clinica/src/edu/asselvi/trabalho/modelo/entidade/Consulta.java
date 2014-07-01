@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class Consulta {
 
+
 	/**
 	 * 
 	 */
@@ -25,9 +26,11 @@ public class Consulta {
 	 * @param dataCriacao
 	 * @param valor
 	 * @param medicamento
+	 * @param pagamento
 	 */
 	public Consulta(long id, Medico medico, Paciente paciente,
-			Date dataCriacao, double valor, Medicamento medicamento) {
+			Date dataCriacao, double valor, Medicamento medicamento,
+			Pagamento pagamento) {
 		super();
 		this.id = id;
 		this.medico = medico;
@@ -35,6 +38,7 @@ public class Consulta {
 		this.dataCriacao = dataCriacao;
 		this.valor = valor;
 		this.medicamento = medicamento;
+		this.pagamento = pagamento;
 	}
 
 	private long id;
@@ -48,6 +52,8 @@ public class Consulta {
 	private double valor;
 	
 	private Medicamento medicamento;
+	
+	private Pagamento pagamento;
 
 	/**
 	 * @return the id
@@ -133,6 +139,20 @@ public class Consulta {
 		this.medicamento = medicamento;
 	}
 
+	/**
+	 * @return the pagamento
+	 */
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	/**
+	 * @param pagamento the pagamento to set
+	 */
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -143,7 +163,8 @@ public class Consulta {
 				.append(medico).append(", paciente=").append(paciente)
 				.append(", dataCriacao=").append(dataCriacao)
 				.append(", valor=").append(valor).append(", medicamento=")
-				.append(medicamento).append("]");
+				.append(medicamento).append(", pagamento=").append(pagamento)
+				.append("]");
 		return builder.toString();
 	}
 
@@ -156,11 +177,14 @@ public class Consulta {
 		int result = 1;
 		result = prime * result
 				+ ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result
+				+ ((medicamento == null) ? 0 : medicamento.hashCode());
 		result = prime * result + ((medico == null) ? 0 : medico.hashCode());
 		result = prime * result
 				+ ((paciente == null) ? 0 : paciente.hashCode());
 		result = prime * result
-				+ ((medicamento == null) ? 0 : medicamento.hashCode());
+				+ ((pagamento == null) ? 0 : pagamento.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(valor);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -184,6 +208,13 @@ public class Consulta {
 				return false;
 		} else if (!dataCriacao.equals(other.dataCriacao))
 			return false;
+		if (id != other.id)
+			return false;
+		if (medicamento == null) {
+			if (other.medicamento != null)
+				return false;
+		} else if (!medicamento.equals(other.medicamento))
+			return false;
 		if (medico == null) {
 			if (other.medico != null)
 				return false;
@@ -194,10 +225,10 @@ public class Consulta {
 				return false;
 		} else if (!paciente.equals(other.paciente))
 			return false;
-		if (medicamento == null) {
-			if (other.medicamento != null)
+		if (pagamento == null) {
+			if (other.pagamento != null)
 				return false;
-		} else if (!medicamento.equals(other.medicamento))
+		} else if (!pagamento.equals(other.pagamento))
 			return false;
 		if (Double.doubleToLongBits(valor) != Double
 				.doubleToLongBits(other.valor))
