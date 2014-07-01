@@ -21,7 +21,7 @@ public final class teste {
 
 	public static void main(String[] args) {
 
-		switch (Integer.parseInt((JOptionPane.showInputDialog("Qual teste?")))) {
+		switch (Integer.parseInt((JOptionPane.showInputDialog(null, "Qual teste?")))) {
 		case 1:
 			teste1();
 			break;
