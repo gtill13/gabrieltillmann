@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.trabalho.modelo.entidade.Contato;
 import edu.asselvi.trabalho.modelo.entidade.Medico;
 
 public class MedicoDao extends DaoBase {
@@ -83,6 +82,8 @@ public class MedicoDao extends DaoBase {
 
 	public List<Medico> buscaTodos () {
 		
+		final EnderecoDao enderecoDao = new EnderecoDao();
+		final ContatoDao contatoDao = new ContatoDao();
 		final List<Medico> listMedicos = new ArrayList<Medico>();
 		
 		executeQuery("select * from medico", new Mapeador<Medico>() {
@@ -95,6 +96,9 @@ public class MedicoDao extends DaoBase {
 						medico.setNome(rset.getString("nome"));
 						medico.setCpf(rset.getString("cpf"));
 						medico.setCrm(rset.getString("crm"));
+						
+						medico.setEndereco(enderecoDao.buscaEnderecoPeloId(rset.getLong("id_endereco")));
+						medico.setContato(contatoDao.buscaContatoPeloId(rset.getLong("id_contato")));
 						
 						listMedicos.add(medico);
 					}
@@ -117,10 +121,16 @@ public class MedicoDao extends DaoBase {
 						try {
 							if (rset.next()) {
 
+								EnderecoDao enderecoDao = new EnderecoDao();
+								ContatoDao contatoDao = new ContatoDao();
+								
 								medico.setId(rset.getLong("id"));
 								medico.setNome(rset.getString("nome"));
 								medico.setCpf(rset.getString("cpf"));
 								medico.setCrm(rset.getString("crm"));
+								
+								medico.setEndereco(enderecoDao.buscaEnderecoPeloId(rset.getLong("id_endereco")));
+								medico.setContato(contatoDao.buscaContatoPeloId(rset.getLong("id_contato")));
 							}
 						} catch (SQLException e) {
 							throw new DaoException(

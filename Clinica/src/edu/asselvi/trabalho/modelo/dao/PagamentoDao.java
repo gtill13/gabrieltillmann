@@ -82,7 +82,7 @@ public class PagamentoDao extends DaoBase {
 		return listPagamentos;
 	}
 
-	public Pagamento buscaContatoPeloId(long id) {
+	public Pagamento buscaPagamentoPeloId(long id) {
 
 		final Pagamento pagamento = new Pagamento();
 
@@ -98,6 +98,8 @@ public class PagamentoDao extends DaoBase {
 								pagamento.setValor(rset.getDouble("valor"));
 								pagamento.setJuros(rset.getDouble("juros"));
 								pagamento.setValorTotal(rset.getDouble("valor_total"));
+								
+								
 							}
 						} catch (SQLException e) {
 							throw new DaoException(

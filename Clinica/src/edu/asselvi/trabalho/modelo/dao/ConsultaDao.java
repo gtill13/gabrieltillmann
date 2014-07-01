@@ -2,8 +2,6 @@ package edu.asselvi.trabalho.modelo.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +68,10 @@ public class ConsultaDao extends DaoBase {
 
 	public List<Consulta> buscaTodos () {
 		
+		final PacienteDao pacienteDao = new PacienteDao();
+		final MedicoDao medicoDao = new MedicoDao();
+		final MedicamentoDao medicamentoDao = new MedicamentoDao();
+		final PagamentoDao pagamentoDao = new PagamentoDao();
 		final List<Consulta> listConsultas = new ArrayList<Consulta>();
 		
 		executeQuery("select * from consulta", new Mapeador<Consulta>() {
@@ -80,9 +82,13 @@ public class ConsultaDao extends DaoBase {
 						
 						consulta.setId(rset.getLong("id"));
 						consulta.setValor(rset.getDouble("valor"));
-						
 						consulta.setDataCriacao(rset.getDate("datacriacao"));
 						
+						consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));
+						consulta.setMedico     (medicoDao     .buscaMedicoPeloId     (rset.getLong("id_medico"     )));
+						consulta.setMedicamento(medicamentoDao.buscaMedicamentoPeloId(rset.getLong("id_medicamento")));
+						consulta.setPagamento  (pagamentoDao  .buscaPagamentoPeloId  (rset.getLong("id_pagamento"  )));
+										
 						listConsultas.add(consulta);
 					}
 				} catch (SQLException e) {
@@ -104,9 +110,19 @@ public class ConsultaDao extends DaoBase {
 						try {
 							if (rset.next()) {
 
+								PacienteDao pacienteDao = new PacienteDao();
+								MedicoDao medicoDao = new MedicoDao();
+								MedicamentoDao medicamentoDao = new MedicamentoDao();
+								PagamentoDao pagamentoDao = new PagamentoDao();
+								
 								consulta.setId(rset.getLong("id"));
 								consulta.setValor(rset.getDouble("valor"));
 								consulta.setDataCriacao(rset.getDate("datacriacao"));
+								
+								consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));
+								consulta.setMedico     (medicoDao     .buscaMedicoPeloId     (rset.getLong("id_medico"     )));
+								consulta.setMedicamento(medicamentoDao.buscaMedicamentoPeloId(rset.getLong("id_medicamento")));
+								consulta.setPagamento  (pagamentoDao  .buscaPagamentoPeloId  (rset.getLong("id_pagamento"  )));
 							}
 						} catch (SQLException e) {
 							throw new DaoException(

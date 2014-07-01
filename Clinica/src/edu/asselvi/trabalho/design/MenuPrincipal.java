@@ -17,7 +17,12 @@ import javax.swing.JPanel;
  */
 public class MenuPrincipal extends JFrame implements IDialog, ActionListener
 {  
-    public MenuPrincipal()  
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public MenuPrincipal()  
     {  
         JPanel panel = new JPanel();  
  

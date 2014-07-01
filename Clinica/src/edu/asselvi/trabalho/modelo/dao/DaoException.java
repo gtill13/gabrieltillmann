@@ -2,6 +2,11 @@ package edu.asselvi.trabalho.modelo.dao;
 
 public class DaoException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public DaoException() {
 		super();
 	}

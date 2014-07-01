@@ -9,9 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.trabalho.modelo.entidade.Contato;
+
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
-import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
 /**
@@ -115,6 +114,8 @@ public class PacienteDao extends DaoBase {
 
 	public List<Paciente> buscaTodos () {
 		
+		final EnderecoDao enderecoDao = new EnderecoDao();
+		final ContatoDao contatoDao = new ContatoDao();
 		final List<Paciente> listPacientes = new ArrayList<Paciente>();
 		
 		executeQuery("select * from paciente", new Mapeador<Paciente>() {
@@ -129,7 +130,9 @@ public class PacienteDao extends DaoBase {
 						paciente.setRg(rset.getString("rg"));
 						paciente.setSexo(ESexo.valueOf(rset.getString("sexo")));
 
-						
+						paciente.setEndereco(enderecoDao.buscaEnderecoPeloId(rset.getLong("id_endereco")));
+						paciente.setContato(contatoDao.buscaContatoPeloId(rset.getLong("id_contato")));
+						paciente.setResponsavel(buscaPacientePeloId(rset.getLong("id_responsavel")));
 						
 						listPacientes.add(paciente);
 					}
@@ -152,11 +155,18 @@ public class PacienteDao extends DaoBase {
 						try {
 							if (rset.next()) {
 
+								EnderecoDao enderecoDao = new EnderecoDao();
+								ContatoDao contatoDao = new ContatoDao();
+								
 								paciente.setId(rset.getLong("id"));
 								paciente.setNome(rset.getString("nome"));
 								paciente.setCpf(rset.getString("cpf"));
 								paciente.setRg(rset.getString("rg"));
 								paciente.setSexo(ESexo.valueOf(rset.getString("sexo")));
+								
+								paciente.setEndereco(enderecoDao.buscaEnderecoPeloId(rset.getLong("id_endereco")));
+								paciente.setContato(contatoDao.buscaContatoPeloId(rset.getLong("id_contato")));
+								paciente.setResponsavel(buscaPacientePeloId(rset.getLong("id_responsavel")));
 								
 							}
 						} catch (SQLException e) {
