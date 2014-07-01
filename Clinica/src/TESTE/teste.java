@@ -51,7 +51,7 @@ public final class teste {
 				"9876543210", ESexo.M);
 		PacienteDao dao = new PacienteDao();
 
-		dao.inserir(paciente);
+		dao.inserirPadrao(paciente);
 	}
 
 	public static void teste2() {
@@ -66,7 +66,7 @@ public final class teste {
 		paciente.setContato(contato);
 
 		PacienteDao dao = new PacienteDao();
-		dao.inserir(paciente);
+		dao.inserirPadrao(paciente);
 	}
 
 	public static void teste3() {

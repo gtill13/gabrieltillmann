@@ -16,7 +16,7 @@ import edu.asselvi.trabalho.modelo.entidade.Endereco;
  */
 public class EnderecoDao extends DaoBase {
 
-	public long inserir(Endereco endereco) {
+	public long inserirComRetorno(Endereco endereco) {
 
 		if (endereco == null)
 			return 0;
@@ -32,7 +32,7 @@ public class EnderecoDao extends DaoBase {
 		if (endereco == null)
 			return 0;
 		else if (endereco.getId() == 0)
-			return this.inserir(endereco);
+			return this.inserirComRetorno(endereco);
 			
 		conecta();
 

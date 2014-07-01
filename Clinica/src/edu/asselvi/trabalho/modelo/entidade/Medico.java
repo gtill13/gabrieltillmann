@@ -9,6 +9,12 @@ package edu.asselvi.trabalho.modelo.entidade;
  */
 public class Medico {
 
+	/**
+	 * 
+	 */
+	public Medico() {
+		super();
+	}
 	public Medico(String crm, String nome, String rg, String cpf, ESexo sexo) {
 		super();
 		this.crm = crm;
