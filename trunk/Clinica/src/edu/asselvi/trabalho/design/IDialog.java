@@ -1,7 +1,6 @@
 package edu.asselvi.trabalho.design;
 
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
 
 public interface IDialog  {
 
