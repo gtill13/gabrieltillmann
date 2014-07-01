@@ -16,7 +16,7 @@ import edu.asselvi.trabalho.modelo.entidade.Contato;
  */
 public class ContatoDao extends DaoBase {
 
-	public long inserir(Contato contato) {
+	public long inserirComRetorno(Contato contato) {
 
 		if (contato == null)
 			return 0;
@@ -82,7 +82,7 @@ public class ContatoDao extends DaoBase {
 		return listContatos;
 	}
 
-	public Contato buscaEnderecoPeloId(long id) {
+	public Contato buscaContatoPeloId(long id) {
 
 		final Contato contato = new Contato();
 

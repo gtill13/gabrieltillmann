@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.asselvi.trabalho.modelo.entidade.Contato;
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
 import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
@@ -19,7 +20,7 @@ import edu.asselvi.trabalho.modelo.entidade.Paciente;
  */
 public class PacienteDao extends DaoBase {
 
-	public void inserir(Paciente paciente) throws DaoException {
+	public void inserirPadrao(Paciente paciente) throws DaoException {
 
 		EnderecoDao enderecoDao = new EnderecoDao();
 		ContatoDao contatoDao = new ContatoDao();
@@ -29,12 +30,32 @@ public class PacienteDao extends DaoBase {
 				+ paciente.getNome()                            + "', '" + paciente.getRg()              + "', '"
 				+ paciente.getCpf()                             + "', '" + paciente.getSexo()            + "', '"
 				+ inserirResponsavel(paciente.getResponsavel()) + "', '"
-				+ contatoDao.inserir(paciente.getContato())     + "', '"
-				+ enderecoDao.inserir(paciente.getEndereco())   + "' ) ");
+				+ contatoDao.inserirComRetorno(paciente.getContato())     + "', '"
+				+ enderecoDao.inserirComRetorno(paciente.getEndereco())   + "' ) ");
 		
 		commit();
 
 		disconecta();
+	}
+	
+	public long inserirComRetorno(Paciente paciente) throws DaoException {
+
+		if(paciente == null)
+			return 0; 
+		
+		EnderecoDao enderecoDao = new EnderecoDao();
+		ContatoDao contatoDao = new ContatoDao();
+		conectaPeloContext();
+		
+		executeUpdate("insert into paciente (nome, rg, cpf, sexo, id_responsavel, id_contato, id_endereco) values ( '"
+				+ paciente.getNome()                            + "', '" + paciente.getRg()              + "', '"
+				+ paciente.getCpf()                             + "', '" + paciente.getSexo()            + "', '"
+				+ inserirResponsavel(paciente.getResponsavel()) + "', '"
+				+ contatoDao.inserirComRetorno(paciente.getContato())     + "', '"
+				+ enderecoDao.inserirComRetorno(paciente.getEndereco())   + "' ) ");
+
+		return getGenerationKeys();
+		
 	}
 
 	private long inserirResponsavel(Paciente paciente) {
@@ -50,8 +71,8 @@ public class PacienteDao extends DaoBase {
 		executeUpdate("insert into paciente (nome, rg, cpf, sexo, id_contato, id_endereco) values ( '"
 				+ paciente.getNome() + "', '" + paciente.getRg()   + "', '"
 				+ paciente.getCpf()  + "', '" + paciente.getSexo() + "', '"
-				+ contatoDao.inserir(paciente.getContato())        + "', '"
-				+ enderecoDao.inserir(paciente.getEndereco())      + "' ) ");
+				+ contatoDao.inserirComRetorno(paciente.getContato())        + "', '"
+				+ enderecoDao.inserirComRetorno(paciente.getEndereco())      + "' ) ");
 		
 		return getGenerationKeys();
 	}
@@ -119,6 +140,34 @@ public class PacienteDao extends DaoBase {
 		});
 		
 		return listPacientes;
+	}
+	
+	public Paciente buscaPacientePeloId(long id) {
+
+		final Paciente paciente = new Paciente();
+
+		executeQuery("select * from paciente where id = '" + id + "' ",
+				new Mapeador<Paciente>() {
+					public void mapear(ResultSet rset) throws DaoException {
+						try {
+							if (rset.next()) {
+
+								paciente.setId(rset.getLong("id"));
+								paciente.setNome(rset.getString("nome"));
+								paciente.setCpf(rset.getString("cpf"));
+								paciente.setRg(rset.getString("rg"));
+								paciente.setSexo(ESexo.valueOf(rset.getString("sexo")));
+								
+							}
+						} catch (SQLException e) {
+							throw new DaoException(
+									"Banco de dados - Erro ao criar lista em "
+											+ this.getClass().toString(), e);
+						}
+					}
+				});
+
+		return paciente;
 	}
 	
 } 
