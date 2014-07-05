@@ -100,16 +100,18 @@ public class Endereco {
 			return false;
 		return true;
 	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Endereco [id=").append(id).append(", endereco=")
-				.append(endereco).append(", cidade=").append(cidade)
-				.append(", bairro=").append(bairro).append(", cep=")
-				.append(cep).append("]");
+		builder.append("Endereco [endereco=").append(endereco)
+				.append(", cidade=").append(cidade).append(", bairro=")
+				.append(bairro).append(", cep=").append(cep).append("]");
 		return builder.toString();
 	}
+
+
 }
