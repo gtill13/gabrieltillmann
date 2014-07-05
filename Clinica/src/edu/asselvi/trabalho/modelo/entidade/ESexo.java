@@ -3,6 +3,7 @@ package edu.asselvi.trabalho.modelo.entidade;
 public enum ESexo {
 
 	M("Masculino"), F("Feminino");
+	
 
 	private final String descricao;
 

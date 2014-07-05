@@ -173,12 +173,14 @@ public class Paciente {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Paciente [nome=").append(nome).append(", rg=")
-				.append(rg).append(", cpf=").append(cpf).append(", sexo=")
-				.append(sexo).append(", responsavel=").append(responsavel)
+		builder.append("Paciente [id=").append(id).append(", nome=")
+				.append(nome).append(", rg=").append(rg).append(", cpf=")
+				.append(cpf).append(", sexo=").append(sexo)
+				.append(", responsavel=").append(responsavel)
 				.append(", endereco=").append(endereco).append(", contato=")
 				.append(contato).append("]");
 		return builder.toString();
 	}
+
 
 }

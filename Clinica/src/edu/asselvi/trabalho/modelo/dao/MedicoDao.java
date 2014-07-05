@@ -64,6 +64,22 @@ public class MedicoDao extends DaoBase {
 
 	}
 	
+	public void deletar(long id) throws DaoException {
+
+		//EnderecoDao enderecoDao = new EnderecoDao();
+		//ContatoDao contatoDao = new ContatoDao();
+		conecta();
+
+		executeUpdate("delete from medico where id = '" + id + "' "); 
+
+		//enderecoDao.deletar(paciente.getEndereco());
+		//contatoDao.deletar(paciente.getContato());
+
+		commit();
+
+		disconecta();
+	}
+	
 	public void deletar(Medico medico) throws DaoException {
 
 		//EnderecoDao enderecoDao = new EnderecoDao();
