@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * @author TiLL
+ * @author TiLl
  * 
  */
 public class RetroClinic extends DesignBase {
