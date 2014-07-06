@@ -44,6 +44,9 @@ public class MenuCadastro extends DesignBase {
 
 	private static void executeActionCadastro(int codigo) throws IOException {
 		
+		if (codigo == 0)
+			return;
+		
 		int codigo2 = -1;
 		while (codigo2 != 0) {
 			System.out.println("1 - Adicionar");
@@ -55,13 +58,15 @@ public class MenuCadastro extends DesignBase {
 					System.in));
 			try {
 				codigo2 = Integer.parseInt(buffer.readLine());
-				executeActionCadastro(codigo);
+				executeActionAAR(codigo, codigo2);
 			} catch (IOException e) {
 				// throw new RuntimeException(e);
 				System.out.println("Opção Incorreta");
 			}
 		}
+	}
 
+	private static void executeActionAAR(int codigo, int codigo2) throws IOException {
 		clearConsole();
 		
 		switch (codigo) {
@@ -98,7 +103,7 @@ public class MenuCadastro extends DesignBase {
 		}
 			break;
 		case 9:
-			System.out.println("executou 2");
+			System.out.println("help");
 			break;
 		}
 	}
@@ -181,6 +186,13 @@ public class MenuCadastro extends DesignBase {
 		long idMedico = Long.parseLong(buffer.readLine());
 		
 		Medico medico = dao.buscaMedicoPeloId(idMedico);
+		
+        if(medico.getId() == 0)
+        {
+    		System.out.println("Opção incorreta:");
+        	return;
+        }
+		
 		Contato contato = new Contato();
 		Endereco endereco = new Endereco();
 
@@ -346,6 +358,13 @@ public class MenuCadastro extends DesignBase {
 		long idMedico = Long.parseLong(buffer.readLine());
 		
 		Paciente paciente = dao.buscaPacientePeloId(idMedico);
+		
+        if(paciente.getId() == 0)
+        {
+    		System.out.println("Opção incorreta:");
+        	return;
+        }
+		
 		Contato contato = new Contato();
 		Endereco endereco = new Endereco();
 
