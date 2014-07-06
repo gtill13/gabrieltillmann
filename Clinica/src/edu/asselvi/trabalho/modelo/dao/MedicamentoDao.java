@@ -30,7 +30,7 @@ public class MedicamentoDao extends DaoBase {
 		conecta();
 		
 		executeUpdate("insert into medicamento (nome, descricao) values ( '"
-						+ medicamento.getNome()                            + "', '" + medicamento.getDescricao()+ "' ) ");
+						+ medicamento.getNome() + "', '" + medicamento.getDescricao()+ "' ) ");
 		
 		return getGenerationKeys();
 	}
