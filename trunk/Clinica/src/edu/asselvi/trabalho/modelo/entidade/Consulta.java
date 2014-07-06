@@ -28,13 +28,12 @@ public class Consulta {
 	 * @param pagamento
 	 */
 	public Consulta(long id, Medico medico, Paciente paciente,
-			Date dataCriacao, Medicamento medicamento,
+			Medicamento medicamento,
 			Pagamento pagamento) {
 		super();
 		this.id = id;
 		this.medico = medico;
 		this.paciente = paciente;
-		this.dataCriacao = dataCriacao;
 		this.medicamento = medicamento;
 		this.pagamento = pagamento;
 	}
@@ -44,8 +43,6 @@ public class Consulta {
 	private Medico medico;
 	
 	private Paciente paciente;
-	
-	private Date dataCriacao;
 	
 	private Medicamento medicamento;
 	
@@ -94,20 +91,6 @@ public class Consulta {
 	}
 
 	/**
-	 * @return the dataCriacao
-	 */
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-
-	/**
-	 * @param dataCriacao the dataCriacao to set
-	 */
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-		/**
 	 * @return the medicamento
 	 */
 	public Medicamento getMedicamento() {
@@ -143,7 +126,6 @@ public class Consulta {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Consulta [id=").append(id).append(", medico=")
 				.append(medico).append(", paciente=").append(paciente)
-				.append(", dataCriacao=").append(dataCriacao)
 				.append(", medicamento=").append(medicamento)
 				.append(", pagamento=").append(pagamento).append("]");
 		return builder.toString();
@@ -156,8 +138,6 @@ public class Consulta {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
 		result = prime * result
 				+ ((medicamento == null) ? 0 : medicamento.hashCode());
 		result = prime * result + ((medico == null) ? 0 : medico.hashCode());
@@ -180,11 +160,6 @@ public class Consulta {
 		if (getClass() != obj.getClass())
 			return false;
 		Consulta other = (Consulta) obj;
-		if (dataCriacao == null) {
-			if (other.dataCriacao != null)
-				return false;
-		} else if (!dataCriacao.equals(other.dataCriacao))
-			return false;
 		if (medicamento == null) {
 			if (other.medicamento != null)
 				return false;
@@ -207,5 +182,7 @@ public class Consulta {
 			return false;
 		return true;
 	}
+
+
 
 }

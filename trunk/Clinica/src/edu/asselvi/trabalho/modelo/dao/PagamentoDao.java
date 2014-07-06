@@ -2,7 +2,11 @@ package edu.asselvi.trabalho.modelo.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.asselvi.trabalho.modelo.entidade.Pagamento;
@@ -13,15 +17,10 @@ public class PagamentoDao extends DaoBase {
 
 		if (pagamento == null)
 			return 0;
-
-		conectaPeloContext();
-		executeUpdate("insert into pagamento (data_pagamento, data_vencimento, valor) values ( '"
-				+ pagamento.getDataPagamento()
-				+ "', '"
-				+ pagamento.getDataVencimento()
-				+ "', '"
-				+ pagamento.getValor()
-				+  "' ) ");
+		
+		conecta();
+		executeUpdate("insert into pagamento (valor, descricao) values ( '"
+				+ pagamento.getValor()+ "', '" + pagamento.getDescricao()+ "' ) ");
 
 		return getGenerationKeys();
 
@@ -34,9 +33,8 @@ public class PagamentoDao extends DaoBase {
 
 		conecta();
 
-		executeUpdate("update pagamento set data_pagamento = '" + pagamento.getDataPagamento()
-				+ "', data_vencimento = '" + pagamento.getDataVencimento() + "', valor = '"
-				+ pagamento.getValor() + "' where id = '" + pagamento.getId() + "' ");
+		executeUpdate("update pagamento set valor = '" + pagamento.getValor() + "', descricao = '" + pagamento.getDescricao() 
+				+ "' where id = '" + pagamento.getId() + "' ");
 	}
 
 	public void deletar(Pagamento pagamento) throws DaoException {
@@ -58,10 +56,9 @@ public class PagamentoDao extends DaoBase {
 						Pagamento pagamento = new Pagamento();
 
 						pagamento.setId(rset.getLong("id"));
-						pagamento.setDataPagamento(rset.getDate("data_pagamento"));
-						pagamento.setDataVencimento(rset.getDate("data_vencimento"));
 						pagamento.setValor(rset.getDouble("valor"));
-
+						pagamento.setDescricao(rset.getString("descricao"));
+						
 						listPagamentos.add(pagamento);
 					}
 				} catch (SQLException e) {
@@ -86,9 +83,9 @@ public class PagamentoDao extends DaoBase {
 							if (rset.next()) {
 
 								pagamento.setId(rset.getLong("id"));
-								pagamento.setDataPagamento(rset.getDate("data_pagamento"));
-								pagamento.setDataVencimento(rset.getDate("data_vencimento"));
 								pagamento.setValor(rset.getDouble("valor"));
+								pagamento.setDescricao(rset.getString("descricao"));
+								
 							}
 						} catch (SQLException e) {
 							throw new DaoException(

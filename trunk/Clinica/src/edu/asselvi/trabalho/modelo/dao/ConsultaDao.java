@@ -28,10 +28,12 @@ public class ConsultaDao extends DaoBase {
 		
 		conecta();
 		
-		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento, datacriacao) values ( '"
-				+ medicoDao.inserirComRetorno(consulta.getMedico())           + "', '" + pacienteDao.inserirComRetorno(consulta.getPaciente()) + "', '"
-				+ medicamentoDao.inserirComRetorno(consulta.getMedicamento()) + "', '" + pagamentoDao.inserirComRetorno(consulta.getPagamento()) +
-				"', '" + consulta.getDataCriacao()                         + "' ) ");
+		pacienteDao.atualizar(consulta.getPaciente());
+		medicoDao.atualizar(consulta.getMedico());
+		
+		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento) values ( '"
+				+ consulta.getMedico().getId()           + "', '" + consulta.getPaciente().getId() + "', '"
+				+ medicamentoDao.inserirComRetorno(consulta.getMedicamento()) + "', '" + pagamentoDao.inserirComRetorno(consulta.getPagamento()) + "' ) ");
 		
 		commit();
 
@@ -88,7 +90,6 @@ public class ConsultaDao extends DaoBase {
 						Consulta consulta = new Consulta();
 						
 						consulta.setId(rset.getLong("id"));
-						consulta.setDataCriacao(rset.getDate("datacriacao"));
 						
 						consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));
 						consulta.setMedico     (medicoDao     .buscaMedicoPeloId     (rset.getLong("id_medico"     )));
@@ -122,7 +123,6 @@ public class ConsultaDao extends DaoBase {
 								PagamentoDao pagamentoDao = new PagamentoDao();
 								
 								consulta.setId(rset.getLong("id"));
-								consulta.setDataCriacao(rset.getDate("datacriacao"));
 								
 								consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));
 								consulta.setMedico     (medicoDao     .buscaMedicoPeloId     (rset.getLong("id_medico"     )));
@@ -152,8 +152,7 @@ public class ConsultaDao extends DaoBase {
 			
 		for(int i = 0; i < 10; ++i)
 		{
-			consulta.setDataCriacao(date);
-
+			
 			long idMedico = 0;
 			
 			while (idMedico == 0)

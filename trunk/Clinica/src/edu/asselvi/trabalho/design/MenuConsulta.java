@@ -82,8 +82,7 @@ public class MenuConsulta extends DesignBase {
 		System.out.println("|   Nova Consulta    |");
 		System.out.println("======================");
 
-		consulta.setDataCriacao(new Date());
-
+		
 		for (;;) {
 			for (Medico medico : listMedico) {
 				System.out.println(medico.toString());
@@ -129,6 +128,8 @@ public class MenuConsulta extends DesignBase {
 		// pagamento.setDataPagamento(new Date(buffer.readLine()));
 		System.out.println("Informe o valor:");
 		pagamento.setValor(Double.parseDouble(buffer.readLine()));
+		System.out.println("Informe o alguma descricao para o pagamento:");
+		pagamento.setDescricao(buffer.readLine());
 
 		consulta.setMedicamento(medicamento);
 		consulta.setPagamento(pagamento);

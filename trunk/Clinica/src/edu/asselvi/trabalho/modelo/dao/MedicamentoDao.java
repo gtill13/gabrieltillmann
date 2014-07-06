@@ -27,9 +27,9 @@ public class MedicamentoDao extends DaoBase {
 		if(medicamento == null)
 			return 0;
 		
-				conectaPeloContext();
+		conecta();
 		
-				executeUpdate("insert into medicamento (nome, descricao) values ( '"
+		executeUpdate("insert into medicamento (nome, descricao) values ( '"
 						+ medicamento.getNome()                            + "', '" + medicamento.getDescricao()+ "' ) ");
 		
 		return getGenerationKeys();
@@ -41,7 +41,7 @@ public class MedicamentoDao extends DaoBase {
 		conecta();
 
 		executeUpdate("update medicamento set nome = '" + medicamento.getNome()
-				+ "', descricao = '" + medicamento.getDescricao() + "' ");
+				+ "', descricao = '" + medicamento.getDescricao() 	+ "' where id = '" + medicamento.getId() + "' ");
 		
 		commit();
 
