@@ -45,10 +45,10 @@ public class RetroClinic extends DesignBase {
 			MenuConsulta.start();
 			break;
 		case 3:
-			System.out.println("Relatorio");
+			MenuRelatorio.start();
 			break;
 		case 9:
-			System.out.println("executou 2");
+			System.out.println("help");
 			break;
 		}
 	}

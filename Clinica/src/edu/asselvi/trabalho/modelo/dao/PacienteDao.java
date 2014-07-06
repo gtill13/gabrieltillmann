@@ -137,7 +137,7 @@ public class PacienteDao extends DaoBase {
 		executeQuery("select * from paciente", new Mapeador<Paciente>() {
 			public void mapear(ResultSet rset) throws DaoException {
 				try {
-					while (rset.next()) {
+						while (rset.next()) {
 						Paciente paciente = new Paciente();
 						
 						paciente.setId(rset.getLong("id"));

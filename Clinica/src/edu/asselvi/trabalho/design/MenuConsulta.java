@@ -46,6 +46,8 @@ public class MenuConsulta extends DesignBase {
 
 	private static void executeActionConsulta(int codigo) throws IOException {
 
+		clearConsole();
+		
 		switch (codigo) {
 		case 1:
 			novaConsulta();
