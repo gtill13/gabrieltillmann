@@ -79,6 +79,7 @@ public class MenuRelatorio extends DesignBase {
 			gravarArq.printf(consulta.toString()+"%n");
 		}
 		
+		gravarArq.close();
 	}
 
 	private static void relatorioPacientes() throws IOException {
@@ -98,7 +99,7 @@ public class MenuRelatorio extends DesignBase {
 			System.out.println(paciente.toString());
 			gravarArq.printf(paciente.toString()+"%n");
 		}
-		
+		gravarArq.close();
 	}
 
 	private static void relatorioMedicos() throws IOException {
@@ -110,7 +111,7 @@ public class MenuRelatorio extends DesignBase {
 		System.out.println("=========================");
 		gravarArq.printf("=========================%n");
 		System.out.println("|    Lista das Medico   |");
-		gravarArq.printf("|    Lista das Consulta   |%n");
+		gravarArq.printf("|    Lista das Medico   |%n");
 		System.out.println("=========================");
 		gravarArq.printf("=========================%n");
 		
@@ -118,7 +119,6 @@ public class MenuRelatorio extends DesignBase {
 			System.out.println(medico.toString());
 			gravarArq.printf(medico.toString()+"%n");
 		}
-		
-		
+		gravarArq.close();
 	}
 }

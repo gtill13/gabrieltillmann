@@ -91,7 +91,7 @@ public class MenuConsulta extends DesignBase {
 			long idMedico = Long.parseLong(buffer.readLine());
 
 			Medico medico = medicoDao.buscaMedicoPeloId(idMedico);
-			if (medico == null)
+			if (medico.getId() == 0)
 				System.out.println("Medico não cadastrado");
 			else {
 				consulta.setMedico(medico);
@@ -108,7 +108,7 @@ public class MenuConsulta extends DesignBase {
 			long idPaciente = Long.parseLong(buffer.readLine());
 
 			Paciente paciente = pacienteDao.buscaPacientePeloId(idPaciente);
-			if (paciente == null)
+			if (paciente.getId() == 0)
 				System.out.println("Paciente não cadastrado");
 			else {
 				consulta.setPaciente(paciente);
