@@ -7,7 +7,6 @@ package edu.asselvi.trabalho.modelo.entidade;
  * @author Gabriel Tillmann
  *
  */
-import java.util.Date;
 
 public class Pagamento {
 	

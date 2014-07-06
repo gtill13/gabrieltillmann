@@ -94,7 +94,7 @@ public class MedicamentoDao extends DaoBase {
 
 		final Medicamento medicamento = new Medicamento();
 
-		executeQuery("select * from contato where id = '" + id + "' ",
+		executeQuery("select * from medicamento where id = '" + id + "' ",
 				new Mapeador<Medicamento>() {
 					public void mapear(ResultSet rset) throws DaoException {
 						try {

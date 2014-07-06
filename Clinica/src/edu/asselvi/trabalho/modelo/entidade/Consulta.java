@@ -3,7 +3,6 @@
  */
 package edu.asselvi.trabalho.modelo.entidade;
 
-import java.util.Date;
 
 /**
  * @author Gabriel Tillmann
@@ -185,7 +184,7 @@ public class Consulta {
 
 	public String toSimpleString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Medico [id=").append(id).append(", medico=").append(medico.toSimpleString()).append("]");
+		builder.append("consulta [id=").append(id).append(", medico=").append(medico.toSimpleString()).append(", paciente=").append(paciente.toSimpleString()).append("]");
 		return builder.toString();
 	}
 
