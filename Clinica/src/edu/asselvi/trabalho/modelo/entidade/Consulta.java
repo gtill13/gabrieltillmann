@@ -183,6 +183,11 @@ public class Consulta {
 		return true;
 	}
 
+	public String toSimpleString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Medico [id=").append(id).append(", medico=").append(medico.toSimpleString()).append("]");
+		return builder.toString();
+	}
 
 
 }

@@ -89,7 +89,7 @@ public class MenuConsulta extends DesignBase {
 		
 		for (;;) {
 			for (Medico medico : listMedico) {
-				System.out.println(medico.toString());
+				System.out.println(medico.toSimpleString()+"\n");
 			}
 
 			System.out.println("Informe o ID do Medico para a consulta:");
@@ -106,7 +106,7 @@ public class MenuConsulta extends DesignBase {
 
 		for (;;) {
 			for (Paciente paciente : listPaciente) {
-				System.out.println(paciente.toString());
+				System.out.println(paciente.toSimpleString()+"\n");
 			}
 
 			System.out.println("Informe o ID do Paciente para a consulta:");
@@ -169,7 +169,7 @@ public class MenuConsulta extends DesignBase {
 		System.out.println("===========================");
 
 		for (Medico medico : listMedico) {
-			System.out.println(medico.toString());
+			System.out.println(medico.toSimpleString()+"\n");
 		}
 
 		System.out
@@ -182,7 +182,7 @@ public class MenuConsulta extends DesignBase {
 
 		for (Consulta consulta : listConsulta) {
 			if (idMedico == consulta.getMedico().getId())
-				System.out.println(consulta.toString());
+				System.out.println(consulta.toSimpleString()+"\n");
 		}
 	}
 }
