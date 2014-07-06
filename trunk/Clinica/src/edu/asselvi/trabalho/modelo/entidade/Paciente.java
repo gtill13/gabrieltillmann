@@ -181,6 +181,10 @@ public class Paciente {
 		return builder.toString();
 	}
 
-
+	public String toSimpleString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Paciente [id=").append(id).append(", nome=").append(nome).append("]");
+		return builder.toString();
+	}
 
 }

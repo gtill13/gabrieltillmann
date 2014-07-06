@@ -186,7 +186,7 @@ public class MenuCadastro extends DesignBase {
 		System.out.println("===========================");
 
 		for (Medico medico : listMedico) {
-			System.out.println(medico.toString());
+			System.out.println(medico.toSimpleString()+"\n");
 		}
 
 		System.out.println("Informe o ID do Medico que deseja alterar:");
@@ -263,7 +263,7 @@ public class MenuCadastro extends DesignBase {
 		System.out.println("===========================");
 
 		for (Medico medico : listMedico) {
-			System.out.println(medico.toString());
+			System.out.println(medico.toSimpleString()+"\n");
 		}
 
 		System.out.println("Informe o ID do Medico que deseja remover:");
@@ -355,7 +355,7 @@ public class MenuCadastro extends DesignBase {
 		System.out.println("===========================");
 
 		for (Paciente paciente : listPaciente) {
-			System.out.println(paciente.toString());
+			System.out.println(paciente.toSimpleString()+"\n");
 		}
 
 		System.out.println("Informe o ID do Paciente que deseja alterar:");
@@ -436,7 +436,7 @@ public class MenuCadastro extends DesignBase {
 		System.out.println("=============================");
 
 		for (Paciente paciente : listPaciente) {
-			System.out.println(paciente.toString());
+			System.out.println(paciente.toSimpleString()+"\n");
 		}
 
 		System.out.println("Informe o ID do Paciente que deseja remover:");

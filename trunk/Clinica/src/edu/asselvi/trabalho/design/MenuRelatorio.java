@@ -81,7 +81,7 @@ public class MenuRelatorio extends DesignBase {
 		gravarArq.printf("===========================%n");
 		
 		for (Consulta consulta : listConsulta) {
-			System.out.println(consulta.toString());
+			System.out.println(consulta.toString()+"\n");
 			gravarArq.printf(consulta.toString()+"%n");
 		}
 		
@@ -102,7 +102,7 @@ public class MenuRelatorio extends DesignBase {
 		gravarArq.printf("===========================%n");
 		
 		for (Paciente paciente : listPaciente) {
-			System.out.println(paciente.toString());
+			System.out.println(paciente.toString()+"\n");
 			gravarArq.printf(paciente.toString()+"%n");
 		}
 		gravarArq.close();
@@ -122,7 +122,7 @@ public class MenuRelatorio extends DesignBase {
 		gravarArq.printf("=========================%n");
 		
 		for (Medico medico : listMedico) {
-			System.out.println(medico.toString());
+			System.out.println(medico.toString()+"\n");
 			gravarArq.printf(medico.toString()+"%n");
 		}
 		gravarArq.close();
