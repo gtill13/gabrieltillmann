@@ -27,15 +27,14 @@ public class DaoBase {
 
 	public void conectaPeloContext() throws DaoException {
 
-		if(context.get() == null)
+		if (context.get() == null)
 			throw new DaoException("Banco de dados - Erro falha no contexto!");
-		
+
 		Connection connection = null;
 		try {
 			connection = context.get();
 
 			statement = connection.createStatement();
-			System.out.println("Banco de dados - Conectado!");
 		} catch (SQLException e) {
 			throw new DaoException("Banco de dados - Erro ao tentar conectar!",
 					e);
@@ -55,9 +54,7 @@ public class DaoBase {
 			connection.setAutoCommit(false);
 			context.set(connection);
 
-			
 			statement = connection.createStatement();
-			System.out.println("Banco de dados - Conectado!");
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new DaoException("Banco de dados - Erro ao tentar conectar!",
 					e);
@@ -65,7 +62,6 @@ public class DaoBase {
 		}
 	}
 
-	
 	public void conecta() throws DaoException {
 		try {
 
@@ -85,7 +81,6 @@ public class DaoBase {
 			}
 
 			statement = connection.createStatement();
-			System.out.println("Banco de dados - Conectado!");
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new DaoException("Banco de dados - Erro ao tentar conectar!",
 					e);
@@ -144,18 +139,19 @@ public class DaoBase {
 		}
 
 	}
-	
-	public <T> void executeQuery(String sql, Mapeador<T> map) throws DaoException {
-		
+
+	public <T> void executeQuery(String sql, Mapeador<T> map)
+			throws DaoException {
+
 		novaConecao();
-		
+
 		try {
 			map.mapear(statement.executeQuery(sql));
 		} catch (SQLException e) {
-			throw new DaoException("Banco de dados - Erro ao executar comando: " + sql, e);
+			throw new DaoException(
+					"Banco de dados - Erro ao executar comando: " + sql, e);
 		} finally {
 			disconecta();
 		}
 	}
 }
-
