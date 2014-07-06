@@ -15,11 +15,11 @@ import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
 public class MenuCadastro extends DesignBase {
 
-	public void start() {
+	public static void start() {
 		startCadastro();
 	}
 	
-	private void startCadastro() {
+	private static void startCadastro() {
 
 		clearConsole();
 
@@ -42,7 +42,7 @@ public class MenuCadastro extends DesignBase {
 
 	}
 
-	private void executeActionCadastro(int codigo) throws IOException {
+	private static void executeActionCadastro(int codigo) throws IOException {
 
 		int codigo2 = -1;
 		while (codigo2 != 0) {
@@ -101,7 +101,7 @@ public class MenuCadastro extends DesignBase {
 		}
 	}
 
-	private void cadastroMedico() throws IOException {
+	private static void cadastroMedico() throws IOException {
 
 		clearConsole();
 
@@ -163,7 +163,7 @@ public class MenuCadastro extends DesignBase {
 		}
 	}
 
-	private void alterarMedico() throws IOException {
+	private static void alterarMedico() throws IOException {
 		MedicoDao dao = new MedicoDao();
 		List<Medico> listMedico = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
@@ -235,7 +235,7 @@ public class MenuCadastro extends DesignBase {
 		
 	}
 	
-	private void removerMedico() throws IOException {
+	private static void removerMedico() throws IOException {
 		MedicoDao dao = new MedicoDao();
 		List<Medico> listMedico = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
@@ -255,7 +255,7 @@ public class MenuCadastro extends DesignBase {
 		dao.deletar(idMedico);	
 	}
 	
-	private boolean checaDadosMedico(Medico medico) {
+	private static boolean checaDadosMedico(Medico medico) {
 
 		if (medico.getNome().isEmpty() || medico.getCrm().isEmpty()
 				|| medico.getCpf().isEmpty())
@@ -264,7 +264,7 @@ public class MenuCadastro extends DesignBase {
 		return true;
 	}
 
-	private void cadastroPaciente() throws IOException {
+	private static void cadastroPaciente() throws IOException {
 
 		clearConsole();
 
@@ -330,7 +330,7 @@ public class MenuCadastro extends DesignBase {
 		}
 	}
 
-	private void alterarPaciente() throws IOException {
+	private static void alterarPaciente() throws IOException {
 		PacienteDao dao = new PacienteDao();
 		List<Paciente> listPaciente = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
@@ -406,7 +406,7 @@ public class MenuCadastro extends DesignBase {
 		
 	}
 	
-	private void removerPaciente() throws IOException {
+	private static void removerPaciente() throws IOException {
 		PacienteDao dao = new PacienteDao();
 		List<Paciente> listPaciente = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
@@ -426,7 +426,7 @@ public class MenuCadastro extends DesignBase {
 		dao.deletar(idPaciente);	
 	}
 	
-	private boolean checaDadosPaciente(Paciente paciente) {
+	private static boolean checaDadosPaciente(Paciente paciente) {
 
 		if (paciente.getNome().isEmpty() || paciente.getRg().isEmpty()
 				|| paciente.getCpf().isEmpty())

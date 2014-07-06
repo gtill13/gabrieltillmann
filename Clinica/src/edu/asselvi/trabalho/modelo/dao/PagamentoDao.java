@@ -15,16 +15,13 @@ public class PagamentoDao extends DaoBase {
 			return 0;
 
 		conectaPeloContext();
-		executeUpdate("insert into pagamento (data_pagamento, data_vencimento, valor, juros, valor_total) values ( '"
+		executeUpdate("insert into pagamento (data_pagamento, data_vencimento, valor) values ( '"
 				+ pagamento.getDataPagamento()
 				+ "', '"
 				+ pagamento.getDataVencimento()
 				+ "', '"
 				+ pagamento.getValor()
-				+ "', '"
-				+ pagamento.getJuros()
-				+ "', '"
-				+ pagamento.getValorTotal() + "' ) ");
+				+  "' ) ");
 
 		return getGenerationKeys();
 
@@ -39,9 +36,7 @@ public class PagamentoDao extends DaoBase {
 
 		executeUpdate("update pagamento set data_pagamento = '" + pagamento.getDataPagamento()
 				+ "', data_vencimento = '" + pagamento.getDataVencimento() + "', valor = '"
-				+ pagamento.getValor() + "', juros = '" + pagamento.getJuros() +
-				"', valor_total = '" + pagamento.getValorTotal() + 
-				"' where id = '" + pagamento.getId() + "' ");
+				+ pagamento.getValor() + "' where id = '" + pagamento.getId() + "' ");
 	}
 
 	public void deletar(Pagamento pagamento) throws DaoException {
@@ -66,8 +61,6 @@ public class PagamentoDao extends DaoBase {
 						pagamento.setDataPagamento(rset.getDate("data_pagamento"));
 						pagamento.setDataVencimento(rset.getDate("data_vencimento"));
 						pagamento.setValor(rset.getDouble("valor"));
-						pagamento.setJuros(rset.getDouble("juros"));
-						pagamento.setValorTotal(rset.getDouble("valor_total"));
 
 						listPagamentos.add(pagamento);
 					}
@@ -96,10 +89,6 @@ public class PagamentoDao extends DaoBase {
 								pagamento.setDataPagamento(rset.getDate("data_pagamento"));
 								pagamento.setDataVencimento(rset.getDate("data_vencimento"));
 								pagamento.setValor(rset.getDouble("valor"));
-								pagamento.setJuros(rset.getDouble("juros"));
-								pagamento.setValorTotal(rset.getDouble("valor_total"));
-								
-								
 							}
 						} catch (SQLException e) {
 							throw new DaoException(

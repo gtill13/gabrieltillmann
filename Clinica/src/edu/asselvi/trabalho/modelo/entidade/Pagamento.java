@@ -16,20 +16,16 @@ public class Pagamento {
 	private Date dataPagamento;
 	private Date dataVencimento;
 	private double valor;
-	private double juros;
-	private double valorTotal;
 
 	private String descricao;
 
 	public Pagamento(int id, Date dataPagamento, Date dataVencimento,
-			double valor, double juros, double valorTotal, String descricao) {
+			double valor, String descricao) {
 		super();
 		this.id = id;
 		this.dataPagamento = dataPagamento;
 		this.dataVencimento = dataVencimento;
 		this.valor = valor;
-		this.juros = juros;
-		this.valorTotal = valorTotal;
 		this.descricao = descricao;
 	}
 
@@ -69,22 +65,6 @@ public class Pagamento {
 		this.valor = valor;
 	}
 
-	public double getJuros() {
-		return juros;
-	}
-
-	public void setJuros(double juros) {
-		this.juros = juros;
-	}
-
-	public double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -93,6 +73,22 @@ public class Pagamento {
 		this.descricao = descricao;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pagamento [id=").append(id).append(", dataPagamento=")
+				.append(dataPagamento).append(", dataVencimento=")
+				.append(dataVencimento).append(", valor=").append(valor)
+				.append(", descricao=").append(descricao).append("]");
+		return builder.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,17 +99,15 @@ public class Pagamento {
 				+ ((dataVencimento == null) ? 0 : dataVencimento.hashCode());
 		result = prime * result
 				+ ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
 		long temp;
-		temp = Double.doubleToLongBits(juros);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(valor);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(valorTotal);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -138,29 +132,10 @@ public class Pagamento {
 				return false;
 		} else if (!descricao.equals(other.descricao))
 			return false;
-		if (id != other.id)
-			return false;
-		if (Double.doubleToLongBits(juros) != Double
-				.doubleToLongBits(other.juros))
-			return false;
 		if (Double.doubleToLongBits(valor) != Double
 				.doubleToLongBits(other.valor))
-			return false;
-		if (Double.doubleToLongBits(valorTotal) != Double
-				.doubleToLongBits(other.valorTotal))
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Pagamento [id=").append(id).append(", dataPagamento=")
-				.append(dataPagamento).append(", dataVencimento=")
-				.append(dataVencimento).append(", valor=").append(valor)
-				.append(", juros=").append(juros).append(", valorTotal=")
-				.append(valorTotal).append(", descricao=").append(descricao)
-				.append("]");
-		return builder.toString();
-	}
 }
