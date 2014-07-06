@@ -44,6 +44,28 @@ public class DaoBase {
 
 	}
 
+	public void novaConecao() throws DaoException {
+		try {
+
+			Connection connection = null;
+
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/clinicabd", "root", "1234");
+			connection.setAutoCommit(false);
+			context.set(connection);
+
+			
+			statement = connection.createStatement();
+			System.out.println("Banco de dados - Conectado!");
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DaoException("Banco de dados - Erro ao tentar conectar!",
+					e);
+			// System.out.println("Banco de dados - Erro ao tentar conectar!");
+		}
+	}
+
+	
 	public void conecta() throws DaoException {
 		try {
 
@@ -125,7 +147,7 @@ public class DaoBase {
 	
 	public <T> void executeQuery(String sql, Mapeador<T> map) throws DaoException {
 		
-		conecta();
+		novaConecao();
 		
 		try {
 			map.mapear(statement.executeQuery(sql));
@@ -136,3 +158,4 @@ public class DaoBase {
 		}
 	}
 }
+

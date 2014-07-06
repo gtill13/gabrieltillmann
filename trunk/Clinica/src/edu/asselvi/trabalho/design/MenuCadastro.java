@@ -43,7 +43,7 @@ public class MenuCadastro extends DesignBase {
 	}
 
 	private static void executeActionCadastro(int codigo) throws IOException {
-
+		
 		int codigo2 = -1;
 		while (codigo2 != 0) {
 			System.out.println("1 - Adicionar");
@@ -62,6 +62,8 @@ public class MenuCadastro extends DesignBase {
 			}
 		}
 
+		clearConsole();
+		
 		switch (codigo) {
 		case 1: {
 			switch (codigo2) {
@@ -102,8 +104,6 @@ public class MenuCadastro extends DesignBase {
 	}
 
 	private static void cadastroMedico() throws IOException {
-
-		clearConsole();
 
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
@@ -265,8 +265,6 @@ public class MenuCadastro extends DesignBase {
 	}
 
 	private static void cadastroPaciente() throws IOException {
-
-		clearConsole();
 
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
