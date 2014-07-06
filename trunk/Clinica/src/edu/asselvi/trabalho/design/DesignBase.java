@@ -4,7 +4,7 @@ public class DesignBase {
 
 	public final static void clearConsole()
 	{
-	    try
+	    /**try
 	    {
 	        final String os = System.getProperty("os.name");
 
@@ -21,6 +21,9 @@ public class DesignBase {
 	    {
 	        // nem vo faze nada ele soh nao limpou a tela.... is the life
 	    }
+	}**/
+		for (int i = 0; i < 50; ++i) 
+			System.out.println();	
+		
 	}
-	
 }

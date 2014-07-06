@@ -160,6 +160,7 @@ public class DaoBase {
 		Connection Conn = DriverManager
 				.getConnection("jdbc:mysql://localhost/?user=root&password=1234");
 		Statement s = Conn.createStatement();
+		@SuppressWarnings("unused")
 		int Result = s.executeUpdate("CREATE DATABASE clinicabd");
 
 		Result = s

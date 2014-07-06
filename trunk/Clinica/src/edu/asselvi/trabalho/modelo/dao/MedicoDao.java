@@ -10,7 +10,7 @@ import edu.asselvi.trabalho.modelo.entidade.Contato;
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
 import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Medico;
-import edu.asselvi.trabalho.modelo.entidade.Paciente;
+
 
 public class MedicoDao extends DaoBase {
 
