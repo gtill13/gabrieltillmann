@@ -6,6 +6,10 @@ package edu.asselvi.trabalho.design;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
+
+import edu.asselvi.trabalho.modelo.dao.DaoBase;
+import edu.asselvi.trabalho.modelo.dao.DaoException;
 
 /**
  * @author TiLl
@@ -15,8 +19,19 @@ public class RetroClinic extends DesignBase {
 
 	/**
 	 * @param args
+	 * @throws SQLException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		
+		DaoBase dao = new DaoBase();
+		try{
+		dao.conecta();
+		dao.disconecta();
+		}
+		catch(DaoException e){
+			dao.CriaBanco();
+		}
+		
 		int codigo = -1;
 		while (codigo != 0) {
 			System.out.println("1 - Cadastros");
