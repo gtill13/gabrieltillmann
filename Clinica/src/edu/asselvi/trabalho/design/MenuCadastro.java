@@ -37,6 +37,10 @@ public class MenuCadastro extends DesignBase {
 				// throw new RuntimeException(e);
 				System.out.println("Opção Incorreta");
 			}
+			catch (NumberFormatException e)
+			{
+				System.out.println("Opção Incorreta");
+			}
 		}
 
 	}
@@ -60,6 +64,10 @@ public class MenuCadastro extends DesignBase {
 				executeActionAAR(codigo, codigo2);
 			} catch (IOException e) {
 				// throw new RuntimeException(e);
+				System.out.println("Opção Incorreta");
+			}
+			catch (NumberFormatException e)
+			{
 				System.out.println("Opção Incorreta");
 			}
 		}

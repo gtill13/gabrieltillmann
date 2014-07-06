@@ -39,6 +39,10 @@ public class MenuRelatorio extends DesignBase {
 				// throw new RuntimeException(e);
 				System.out.println("Opção Incorreta");
 			}
+			catch (NumberFormatException e)
+			{
+				System.out.println("Opção Incorreta");
+			}
 		}
 	}
 	
