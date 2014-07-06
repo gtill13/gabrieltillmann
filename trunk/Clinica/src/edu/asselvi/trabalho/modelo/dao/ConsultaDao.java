@@ -18,10 +18,10 @@ public class ConsultaDao extends DaoBase {
 		
 		conecta();
 		
-		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento, valor, datacriacao) values ( '"
+		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento, datacriacao) values ( '"
 				+ medicoDao.inserirComRetorno(consulta.getMedico())           + "', '" + pacienteDao.inserirComRetorno(consulta.getPaciente()) + "', '"
-				+ medicamentoDao.inserirComRetorno(consulta.getMedicamento()) + "', '" + pagamentoDao.inserirComRetorno(consulta.getPagamento()) + "', '"
-				+ consulta.getValor()                                         + "', '" + consulta.getDataCriacao()                         + "' ) ");
+				+ medicamentoDao.inserirComRetorno(consulta.getMedicamento()) + "', '" + pagamentoDao.inserirComRetorno(consulta.getPagamento()) +
+				"', '" + consulta.getDataCriacao()                         + "' ) ");
 		
 		commit();
 
@@ -40,9 +40,6 @@ public class ConsultaDao extends DaoBase {
 		medicoDao .atualizar(consulta.getMedico());
 		medicamentoDao .atualizar(consulta.getMedicamento());
 		pagamentoDao .atualizar(consulta.getPagamento());
-		
-		executeUpdate("update consulta set valor = '" + consulta.getValor()
-				+ "', datacriacao = '" + consulta.getDataCriacao() + "' ");
 		
 		commit();
 
@@ -81,7 +78,6 @@ public class ConsultaDao extends DaoBase {
 						Consulta consulta = new Consulta();
 						
 						consulta.setId(rset.getLong("id"));
-						consulta.setValor(rset.getDouble("valor"));
 						consulta.setDataCriacao(rset.getDate("datacriacao"));
 						
 						consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));
@@ -116,7 +112,6 @@ public class ConsultaDao extends DaoBase {
 								PagamentoDao pagamentoDao = new PagamentoDao();
 								
 								consulta.setId(rset.getLong("id"));
-								consulta.setValor(rset.getDouble("valor"));
 								consulta.setDataCriacao(rset.getDate("datacriacao"));
 								
 								consulta.setPaciente   (pacienteDao   .buscaPacientePeloId   (rset.getLong("id_paciente"   )));

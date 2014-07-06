@@ -19,8 +19,8 @@ public class RetroClinic extends DesignBase {
 	public static void main(String[] args) {
 		int codigo = -1;
 		while (codigo != 0) {
-			System.out.println("1 - Cadastro");
-			System.out.println("2 - Consulta");
+			System.out.println("1 - Cadastros");
+			System.out.println("2 - Consulta Clínica");
 			System.out.println("3 - Relatorio");
 			System.out.println("9 - Help");
 			System.out.println("0 - Sair");
@@ -39,11 +39,10 @@ public class RetroClinic extends DesignBase {
 	private static void executeActionMain(int codigo) {
 		switch (codigo) {
 		case 1:
-			MenuCadastro cadastro = new MenuCadastro();
-			cadastro.start();
+			MenuCadastro.start(); 
 			break;
 		case 2:
-			System.out.println("Consulta");
+			MenuConsulta.start();
 			break;
 		case 3:
 			System.out.println("Relatorio");
