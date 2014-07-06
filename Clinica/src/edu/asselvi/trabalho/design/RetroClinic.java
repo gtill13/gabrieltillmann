@@ -63,7 +63,7 @@ public class RetroClinic extends DesignBase {
 			MenuRelatorio.start();
 			break;
 		case 9:
-			System.out.println("help");
+			System.out.println("Informe o que deseja que o sistema realize.");
 			break;
 		}
 	}

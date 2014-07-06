@@ -4,8 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import edu.asselvi.trabalho.modelo.entidade.Contato;
+import edu.asselvi.trabalho.modelo.entidade.ESexo;
+import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Medico;
+import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
 public class MedicoDao extends DaoBase {
 
@@ -158,6 +163,35 @@ public class MedicoDao extends DaoBase {
 
 		return medico;
 	}
-	
+
+	public void CriaDemo() {
+		Medico medico = new Medico();
+		Contato contato = new Contato();
+		Endereco endereco = new Endereco();
+		Random random = new Random();
+		
+		for(int i = 0; i < 10; ++i)
+		{
+			medico.setNome(stringAleatoria(25));
+			medico.setCpf(stringAleatoria(12));
+			medico.setCrm(stringAleatoria(8));
+			medico.setSexo((random.nextInt()%2 == 0) ? ESexo.F : ESexo.M);
+
+			contato.setEmail(stringAleatoria(40));
+			contato.setCelular(stringAleatoria(9));
+			contato.setTelefone(stringAleatoria(9));
+			
+			endereco.setEndereco(stringAleatoria(90));
+			endereco.setCidade(stringAleatoria(15));
+			endereco.setCep(stringAleatoria(7));
+			endereco.setBairro(stringAleatoria(14));
+			
+			medico.setContato(contato);
+			medico.setEndereco(endereco);
+			
+			inserirPadrao(medico);
+		}
+		
+	}
 	
 }

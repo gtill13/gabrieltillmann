@@ -47,7 +47,7 @@ public class MenuConsulta extends DesignBase {
 	private static void executeActionConsulta(int codigo) throws IOException {
 
 		clearConsole();
-		
+
 		switch (codigo) {
 		case 1:
 			novaConsulta();
@@ -56,6 +56,8 @@ public class MenuConsulta extends DesignBase {
 			verificarConsulta();
 			break;
 		case 9:
+			System.out
+					.println("Informe a operação que deseja realizar para uma consulta");
 			break;
 		}
 	}
@@ -146,31 +148,33 @@ public class MenuConsulta extends DesignBase {
 		return true;
 	}
 
-	private static void verificarConsulta() throws NumberFormatException, IOException {
+	private static void verificarConsulta() throws NumberFormatException,
+			IOException {
 		// TODO Auto-generated method stub
 		ConsultaDao ConsultaDao = new ConsultaDao();
 		List<Consulta> listConsulta = ConsultaDao.buscaTodos();
-		
+
 		MedicoDao medicoDao = new MedicoDao();
 		List<Medico> listMedico = medicoDao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
-		
+
 		System.out.println("===========================");
 		System.out.println("|    Lista dos Medicos    |");
 		System.out.println("===========================");
-		
+
 		for (Medico medico : listMedico) {
 			System.out.println(medico.toString());
 		}
-		
-		System.out.println("Informe o ID do medico que deseja vizualizar as consultas:");
+
+		System.out
+				.println("Informe o ID do medico que deseja vizualizar as consultas:");
 		long idMedico = Long.parseLong(buffer.readLine());
-		
+
 		System.out.println("===========================");
 		System.out.println("|    Lista das Consulta   |");
 		System.out.println("===========================");
-		
+
 		for (Consulta consulta : listConsulta) {
 			if (idMedico == consulta.getMedico().getId())
 				System.out.println(consulta.toString());
