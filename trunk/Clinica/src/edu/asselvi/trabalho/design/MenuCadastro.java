@@ -18,7 +18,7 @@ public class MenuCadastro extends DesignBase {
 	public static void start() {
 		startCadastro();
 	}
-	
+
 	private static void startCadastro() {
 
 		clearConsole();
@@ -27,14 +27,13 @@ public class MenuCadastro extends DesignBase {
 		while (codigo != 0) {
 			System.out.println("1 - Medico");
 			System.out.println("2 - Paciente");
-			System.out.println("9 - Help");
 			System.out.println("0 - Sair");
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(
 					System.in));
 			try {
 				codigo = Integer.parseInt(buffer.readLine());
 				executeActionCadastro(codigo);
-			} catch (IOException e ) {
+			} catch (IOException e) {
 				// throw new RuntimeException(e);
 				System.out.println("Opção Incorreta");
 			}
@@ -43,10 +42,10 @@ public class MenuCadastro extends DesignBase {
 	}
 
 	private static void executeActionCadastro(int codigo) throws IOException {
-		
+
 		if (codigo == 0)
 			return;
-		
+
 		int codigo2 = -1;
 		while (codigo2 != 0) {
 			System.out.println("1 - Adicionar");
@@ -66,9 +65,10 @@ public class MenuCadastro extends DesignBase {
 		}
 	}
 
-	private static void executeActionAAR(int codigo, int codigo2) throws IOException {
+	private static void executeActionAAR(int codigo, int codigo2)
+			throws IOException {
 		clearConsole();
-		
+
 		switch (codigo) {
 		case 1: {
 			switch (codigo2) {
@@ -82,6 +82,8 @@ public class MenuCadastro extends DesignBase {
 				removerMedico();
 				break;
 			case 9:
+				System.out
+						.println("Informe a operação que deseja realizar no cadastro de medicos");
 				break;
 			}
 		}
@@ -98,13 +100,11 @@ public class MenuCadastro extends DesignBase {
 				removerPaciente();
 				break;
 			case 9:
+				System.out
+						.println("Informe a operação que deseja realizar no cadastro de paciente");
 				break;
 			}
 		}
-			break;
-		case 9:
-			System.out.println("help");
-			break;
 		}
 	}
 
@@ -160,8 +160,7 @@ public class MenuCadastro extends DesignBase {
 		if (checaDadosMedico(medico)) {
 			MedicoDao dao = new MedicoDao();
 			dao.inserirPadrao(medico);
-			System.out
-					.println("Medico cadastrado com sucesso.");
+			System.out.println("Medico cadastrado com sucesso.");
 		} else {
 			System.out
 					.println("Foram encontrados erros no cadastro. Favor  tentar novamente");
@@ -173,26 +172,25 @@ public class MenuCadastro extends DesignBase {
 		List<Medico> listMedico = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
-		
+
 		System.out.println("===========================");
 		System.out.println("|    Lista dos Medicos    |");
 		System.out.println("===========================");
-		
+
 		for (Medico medico : listMedico) {
 			System.out.println(medico.toString());
 		}
-		
+
 		System.out.println("Informe o ID do Medico que deseja alterar:");
 		long idMedico = Long.parseLong(buffer.readLine());
-		
+
 		Medico medico = dao.buscaMedicoPeloId(idMedico);
-		
-        if(medico.getId() == 0)
-        {
-    		System.out.println("Opção incorreta:");
-        	return;
-        }
-		
+
+		if (medico.getId() == 0) {
+			System.out.println("Opção incorreta:");
+			return;
+		}
+
 		Contato contato = new Contato();
 		Endereco endereco = new Endereco();
 
@@ -232,41 +230,40 @@ public class MenuCadastro extends DesignBase {
 		contato.setCelular(buffer.readLine());
 		System.out.println("Email:");
 		contato.setEmail(buffer.readLine());
-		
+
 		medico.setEndereco(endereco);
 		medico.setContato(contato);
 
 		if (checaDadosMedico(medico)) {
 			dao.atualizar(medico);
-			System.out
-					.println("Medico cadastrado com sucesso.");
+			System.out.println("Medico cadastrado com sucesso.");
 		} else {
 			System.out
 					.println("Foram encontrados erros no cadastro. Favor  tentar novamente");
 		}
-		
+
 	}
-	
+
 	private static void removerMedico() throws IOException {
 		MedicoDao dao = new MedicoDao();
 		List<Medico> listMedico = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
-		
+
 		System.out.println("===========================");
 		System.out.println("|    Lista dos Medicos    |");
 		System.out.println("===========================");
-		
+
 		for (Medico medico : listMedico) {
 			System.out.println(medico.toString());
 		}
-		
+
 		System.out.println("Informe o ID do Medico que deseja remover:");
 		long idMedico = Long.parseLong(buffer.readLine());
-		
-		dao.deletar(idMedico);	
+
+		dao.deletar(idMedico);
 	}
-	
+
 	private static boolean checaDadosMedico(Medico medico) {
 
 		if (medico.getNome().isEmpty() || medico.getCrm().isEmpty()
@@ -331,8 +328,7 @@ public class MenuCadastro extends DesignBase {
 		if (checaDadosPaciente(paciente)) {
 			PacienteDao dao = new PacienteDao();
 			dao.inserirPadrao(paciente);
-			System.out
-			.println("Paciente cadastrado com sucesso.");
+			System.out.println("Paciente cadastrado com sucesso.");
 
 		} else {
 			System.out
@@ -345,26 +341,25 @@ public class MenuCadastro extends DesignBase {
 		List<Paciente> listPaciente = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
-		
+
 		System.out.println("===========================");
 		System.out.println("|    Lista dos Pacientes    |");
 		System.out.println("===========================");
-		
+
 		for (Paciente paciente : listPaciente) {
 			System.out.println(paciente.toString());
 		}
-		
+
 		System.out.println("Informe o ID do Paciente que deseja alterar:");
 		long idMedico = Long.parseLong(buffer.readLine());
-		
+
 		Paciente paciente = dao.buscaPacientePeloId(idMedico);
-		
-        if(paciente.getId() == 0)
-        {
-    		System.out.println("Opção incorreta:");
-        	return;
-        }
-		
+
+		if (paciente.getId() == 0) {
+			System.out.println("Opção incorreta:");
+			return;
+		}
+
 		Contato contato = new Contato();
 		Endereco endereco = new Endereco();
 
@@ -413,36 +408,35 @@ public class MenuCadastro extends DesignBase {
 
 		if (checaDadosPaciente(paciente)) {
 			dao.atualizar(paciente);
-			System.out
-			.println("Paciente cadastrado com sucesso.");
+			System.out.println("Paciente cadastrado com sucesso.");
 
 		} else {
 			System.out
 					.println("Foram encontrados erros no cadastro. Favor  tentar novamente");
 		}
-		
+
 	}
-	
+
 	private static void removerPaciente() throws IOException {
 		PacienteDao dao = new PacienteDao();
 		List<Paciente> listPaciente = dao.buscaTodos();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(
 				System.in));
-		
+
 		System.out.println("=============================");
 		System.out.println("|    Lista dos Pacientes    |");
 		System.out.println("=============================");
-		
+
 		for (Paciente paciente : listPaciente) {
 			System.out.println(paciente.toString());
 		}
-		
+
 		System.out.println("Informe o ID do Paciente que deseja remover:");
 		long idPaciente = Long.parseLong(buffer.readLine());
-		
-		dao.deletar(idPaciente);	
+
+		dao.deletar(idPaciente);
 	}
-	
+
 	private static boolean checaDadosPaciente(Paciente paciente) {
 
 		if (paciente.getNome().isEmpty() || paciente.getRg().isEmpty()

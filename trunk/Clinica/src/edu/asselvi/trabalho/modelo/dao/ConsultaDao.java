@@ -2,10 +2,20 @@ package edu.asselvi.trabalho.modelo.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import edu.asselvi.trabalho.modelo.entidade.Consulta;
+import edu.asselvi.trabalho.modelo.entidade.Contato;
+import edu.asselvi.trabalho.modelo.entidade.ESexo;
+import edu.asselvi.trabalho.modelo.entidade.Endereco;
+import edu.asselvi.trabalho.modelo.entidade.Medicamento;
+import edu.asselvi.trabalho.modelo.entidade.Medico;
+import edu.asselvi.trabalho.modelo.entidade.Pagamento;
 
 public class ConsultaDao extends DaoBase {
 	
@@ -128,6 +138,51 @@ public class ConsultaDao extends DaoBase {
 				});
 
 		return consulta;
+	}
+
+	public void CriaDemo() {
+		Consulta consulta = new Consulta();
+		MedicoDao medicoDao = new MedicoDao();
+		PacienteDao pacienteDao = new PacienteDao();
+		Medicamento medicamento = new Medicamento();
+		Pagamento pagamento = new Pagamento();
+		Random random = new Random();
+
+		Date date = new Date();
+			
+		for(int i = 0; i < 10; ++i)
+		{
+			consulta.setDataCriacao(date);
+
+			long idMedico = 0;
+			
+			while (idMedico == 0)
+			{
+				idMedico = random.nextInt()%11;
+			}
+						
+			consulta.setMedico(medicoDao.buscaMedicoPeloId(idMedico));
+
+			long idPaciente = 0;
+			
+			while (idPaciente == 0)
+			{
+				idPaciente = random.nextInt()%11;
+			}
+						
+			consulta.setPaciente(pacienteDao.buscaPacientePeloId(idPaciente));
+			
+			medicamento.setNome(stringAleatoria(12));
+			medicamento.setDescricao(stringAleatoria(60));
+			
+			pagamento.setValor(random.nextDouble());
+			
+			consulta.setMedicamento(medicamento);
+			consulta.setPagamento(pagamento);
+			
+			inserirPadrao(consulta);
+		}
+		
 	}
 	
 }

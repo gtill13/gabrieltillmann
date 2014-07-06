@@ -10,7 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+import java.util.Random;
+
+import edu.asselvi.trabalho.modelo.entidade.Contato;
 import edu.asselvi.trabalho.modelo.entidade.ESexo;
+import edu.asselvi.trabalho.modelo.entidade.Endereco;
 import edu.asselvi.trabalho.modelo.entidade.Paciente;
 
 /**
@@ -195,6 +200,34 @@ public class PacienteDao extends DaoBase {
 
 		return paciente;
 	}
-	
+
+	public void CriaDemo() {
+		Paciente paciente = new Paciente();
+		Contato contato = new Contato();
+		Endereco endereco = new Endereco();
+		Random random = new Random();
+		
+		for(int i = 0; i < 10; ++i)
+		{
+			paciente.setNome(stringAleatoria(25));
+			paciente.setCpf(stringAleatoria(12));
+			paciente.setRg(stringAleatoria(8));
+			paciente.setSexo((random.nextInt()%2 == 0) ? ESexo.F : ESexo.M);
+
+			contato.setEmail(stringAleatoria(40));
+			contato.setCelular(stringAleatoria(9));
+			contato.setTelefone(stringAleatoria(9));
+			
+			endereco.setEndereco(stringAleatoria(90));
+			endereco.setCidade(stringAleatoria(15));
+			endereco.setCep(stringAleatoria(7));
+			endereco.setBairro(stringAleatoria(14));
+			
+			paciente.setContato(contato);
+			paciente.setEndereco(endereco);
+			
+			inserirPadrao(paciente);
+		}
+	}
 } 
 

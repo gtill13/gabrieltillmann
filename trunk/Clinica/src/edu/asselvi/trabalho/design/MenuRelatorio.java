@@ -57,6 +57,8 @@ public class MenuRelatorio extends DesignBase {
 			relatorioConsultas();
 			break;
 		case 9:
+			System.out
+			.println("Informe qual relatorio deseja visualizar, o relatorio é salvo na pasta de execução do RetroClinic");
 			break;
 		}
 	}

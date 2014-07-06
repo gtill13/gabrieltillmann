@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.Random;
 
 public class DaoBase {
 
@@ -156,20 +157,48 @@ public class DaoBase {
 	}
 
 	public void CriaBanco() throws SQLException {
-		Connection Conn = DriverManager.getConnection  
-				("jdbc:mysql://localhost/?user=root&password=1234");   
-		Statement s=Conn.createStatement();  
-		int Result=s.executeUpdate("CREATE DATABASE clinicabd");  
+		Connection Conn = DriverManager
+				.getConnection("jdbc:mysql://localhost/?user=root&password=1234");
+		Statement s = Conn.createStatement();
+		int Result = s.executeUpdate("CREATE DATABASE clinicabd");
+
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.PACIENTE(ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),RG VARCHAR(20),CPF VARCHAR(20),SEXO VARCHAR(1),ID_RESPONSAVEL INTEGER,ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.MEDICO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,CRM VARCHAR(20),NOME VARCHAR(255),CPF VARCHAR(20),ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.CONTATO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,EMAIL VARCHAR(255),TELEFONE VARCHAR(20),CELULAR VARCHAR(20));");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.ENDERECO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,ENDERECO VARCHAR(255),CIDADE VARCHAR(255),CEP VARCHAR(20),BAIRRO VARCHAR(255));");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.CONSULTA(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,DATACRIACAO DATE,ID_MEDICO INTEGER,ID_PACIENTE INTEGER,ID_MEDICAMENTO INTEGER,ID_PAGAMENTO INTEGER);");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.PAGAMENTO(ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,DATA_PAGAMENTO DATE,DATA_VENCIMENTO DATE,VALOR DOUBLE);");
+		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.MEDICAMENTO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),DESCRICAO VARCHAR(255));");
+
+		PacienteDao pacienteDao = new PacienteDao();
+		pacienteDao.CriaDemo();
+		MedicoDao medicoDao = new MedicoDao();
+		medicoDao.CriaDemo();
+		ConsultaDao consultaDao = new ConsultaDao();
+		consultaDao.CriaDemo();
+
+	}
+
+	public String stringAleatoria(int tamanho) {
+
+		String letras = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
+
+		Random random = new Random();
+
+		String string = "";
+		int index = -1;
+		for (int i = 0; i < tamanho; i++) {
+			index = random.nextInt(letras.length());
+			string += letras.substring(index, index + 1);
+		}
 		
-		Result = s.executeUpdate("CREATE TABLE clinicabd.PACIENTE(ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),RG VARCHAR(20),CPF VARCHAR(20),SEXO VARCHAR(1),ID_RESPONSAVEL INTEGER,ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.MEDICO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,CRM VARCHAR(20),NOME VARCHAR(255),CPF VARCHAR(20),ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.CONTATO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,EMAIL VARCHAR(255),TELEFONE VARCHAR(20),CELULAR VARCHAR(20));");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.ENDERECO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,ENDERECO VARCHAR(255),CIDADE VARCHAR(255),CEP VARCHAR(20),BAIRRO VARCHAR(255));");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.CONSULTA(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,DATACRIACAO DATE,ID_MEDICO INTEGER,ID_PACIENTE INTEGER,ID_MEDICAMENTO INTEGER,ID_PAGAMENTO INTEGER);");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.PAGAMENTO(ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,DATA_PAGAMENTO DATE,DATA_VENCIMENTO DATE,VALOR DOUBLE);");
-		Result = s.executeUpdate("CREATE TABLE clinicabd.MEDICAMENTO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),DESCRICAO VARCHAR(255));");
-		
-		
-		
+		return string; 
 	}
 }

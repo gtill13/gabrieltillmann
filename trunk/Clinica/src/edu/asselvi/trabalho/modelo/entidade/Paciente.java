@@ -176,11 +176,11 @@ public class Paciente {
 		builder.append("Paciente [id=").append(id).append(", nome=")
 				.append(nome).append(", rg=").append(rg).append(", cpf=")
 				.append(cpf).append(", sexo=").append(sexo)
-				.append(", responsavel=").append(responsavel)
 				.append(", endereco=").append(endereco).append(", contato=")
 				.append(contato).append("]");
 		return builder.toString();
 	}
+
 
 
 }
