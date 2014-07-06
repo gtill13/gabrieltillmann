@@ -26,10 +26,10 @@ public class ConsultaDao extends DaoBase {
 		MedicamentoDao medicamentoDao = new MedicamentoDao();
 		PagamentoDao pagamentoDao = new PagamentoDao();
 		
-		conecta();
-		
 		pacienteDao.atualizar(consulta.getPaciente());
 		medicoDao.atualizar(consulta.getMedico());
+		
+		conecta();
 		
 		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento) values ( '"
 				+ consulta.getMedico().getId()           + "', '" + consulta.getPaciente().getId() + "', '"
@@ -147,9 +147,7 @@ public class ConsultaDao extends DaoBase {
 		Medicamento medicamento = new Medicamento();
 		Pagamento pagamento = new Pagamento();
 		Random random = new Random();
-
-		Date date = new Date();
-			
+	
 		for(int i = 0; i < 10; ++i)
 		{
 			
@@ -157,7 +155,7 @@ public class ConsultaDao extends DaoBase {
 			
 			while (idMedico == 0)
 			{
-				idMedico = random.nextInt()%11;
+				idMedico = Math.abs(random.nextInt()%11);
 			}
 						
 			consulta.setMedico(medicoDao.buscaMedicoPeloId(idMedico));
@@ -166,7 +164,7 @@ public class ConsultaDao extends DaoBase {
 			
 			while (idPaciente == 0)
 			{
-				idPaciente = random.nextInt()%11;
+				idPaciente = Math.abs(random.nextInt()%11);
 			}
 						
 			consulta.setPaciente(pacienteDao.buscaPacientePeloId(idPaciente));
