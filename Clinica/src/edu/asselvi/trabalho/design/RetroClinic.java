@@ -32,6 +32,8 @@ public class RetroClinic extends DesignBase {
 			dao.CriaBanco();
 		}
 		
+		clearConsole();
+		
 		int codigo = -1;
 		while (codigo != 0) {
 			System.out.println("1 - Cadastros");
